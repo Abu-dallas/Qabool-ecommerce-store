@@ -1,7 +1,10 @@
+"use client";
 import { Search } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
-function Categories() {
+function Categories({ setSearch }) {
+  const [search, setSearching] = useState("");
   return (
     <div className=" mt-4">
       <div className="flex items-center justify-center whitespace-nowrap max-sm:pl-44 pr-3 gap-4 lg:gap-12 scrollbar-hide  overflow-x-auto py-4">
@@ -89,6 +92,9 @@ function Categories() {
       <div className="w-full flex items-center justify-center px-6  pt-3 pb-6">
         <div className="w-full lg:w-[50%] border flex items-center shadow-xs justify-between pr-3 border-slate-200 rounded-xl">
           <input
+            onChange={(e) => {
+              setSearch(search), setSearching(e.target.value);
+            }}
             type="text"
             placeholder="search product"
             className="p-2 outline-none max-md:w-full w-[35%] px-4 text-slate-600 flex-1"

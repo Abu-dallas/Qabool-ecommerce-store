@@ -34,16 +34,24 @@ function AboutUs() {
               <Phone />
             </span>
 
-            <p className="text-slate-700  text-md">+234 8061457556</p>
+            <a
+              href="tel:+2348061457556"
+              className="text-slate-700  text-md md:text-md md:font-normal font-semibold"
+            >
+              +234 8061457556
+            </a>
           </div>
           <div className="flex items-center gap-4">
             <span className="bg-slate-100 p-2 rounded-full">
               <Mail />
             </span>
 
-            <p className="text-slate-700  text-md">
+            <a
+              href="mailto:Fatimaibrahimhamza@gmail.com"
+              className="text-slate-700  text-md font-semibold md:text-md md:font-normal"
+            >
               Fatimaibrahimhamza@gmail.com
-            </p>
+            </a>
           </div>
           <div className="flex items-center gap-4">
             <span className="bg-slate-100 p-2 rounded-full">

@@ -20,16 +20,21 @@ function Footer() {
             <Phone className="text-slate-500" />
           </span>
 
-          <p className="text-slate-500  text-sm">+234 8061457556</p>
+          <a href="tel:+2348061457556" className="text-slate-500  text-sm">
+            +234 8061457556
+          </a>
         </div>
         <div className="flex items-center gap-2">
           <span className="bg-slate-800 p-2 rounded-full">
             <Mail className="text-slate-500" />
           </span>
 
-          <p className="text-slate-500  text-sm">
+          <a
+            href="mailto:Fatimaibrahimhamza@gmail.com"
+            className="text-slate-500  text-sm"
+          >
             Fatimaibrahimhamza@gmail.com
-          </p>
+          </a>
         </div>
         <div className="flex items-center gap-2">
           <span className="bg-slate-800 p-2 rounded-full">

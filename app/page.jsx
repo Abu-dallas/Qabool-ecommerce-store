@@ -275,49 +275,11 @@ export default function Home() {
         ))}
       </div>
 
-      <div>
-        <Categories />
-      </div>
-      <div>
-        <Products Featured={Featured} Data={Data} />
-      </div>
-      <div>
-        <AboutUs />
-      </div>
-      <div>
-        <Footer />
-      </div>
+      <Products Featured={Featured} Data={Data} />
+
+      <AboutUs />
+
+      <Footer />
     </div>
   );
 }
-
-/*const  = [
-  {
-    title: "sallah fashion",
-    image: "/qabool/ring1.jpg",
-    unitPrice: 1200,
-    totalPrice: 2500,
-    quantity: 2,
-  },
-  {
-    title: "dankunne mai tsada",
-    image: "/qabool/earring2.jpg",
-    unitPrice: 100,
-    totalPrice: 3500,
-    quantity: 5,
-  },
-  {
-    title: "hand bag",
-    image: "/qabool/bag2.jpg",
-    unitPrice: 1200,
-    totalPrice: 8500,
-    quantity: 3,
-  },
-  {
-    title: "dankunne mai tsada",
-    image: "/qabool/earring2.jpg",
-    unitPrice: 100,
-    totalPrice: 3500,
-    quantity: 5,
-  },
-]; */
