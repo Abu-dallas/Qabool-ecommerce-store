@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 const existingLocalStorage = () => {
   if (typeof window !== "undefined") {
@@ -59,8 +60,10 @@ const cartReducer = createSlice({
 
       if (existingItem) {
         existingItem.quantity += 1;
+        toast.error("Item is already in cart");
       } else {
         state.cartItems.push({ ...product, quantity: 1 });
+        toast.success("Item added to cart");
       }
 
       state.totalQuantity += 1;
@@ -80,6 +83,7 @@ const cartReducer = createSlice({
         state.cartItems = state.cartItems.filter(
           (item) => item._id !== product._id
         );
+        toast.success("Item removed frrom cart");
       }
       saveToLocalStorage(state);
     },
