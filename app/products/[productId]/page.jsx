@@ -53,7 +53,7 @@ function page({ params }) {
               <button
                 key={index}
                 type="button"
-                className="p-1 w-[65px]  px-2 bg-slate-800 rounded-lg text-white"
+                className="p-1 w-[65px]  px-2 bg-slate-900 rounded-lg text-white"
               >
                 {col}
               </button>
