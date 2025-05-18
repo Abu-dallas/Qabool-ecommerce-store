@@ -95,6 +95,7 @@ function Categories({ setSearch }) {
             onChange={(e) => {
               setSearch(search), setSearching(e.target.value);
             }}
+            value={search}
             type="text"
             placeholder="search product"
             className="p-2 outline-none max-md:w-full w-[35%] px-4 text-slate-600 flex-1"

@@ -200,6 +200,7 @@ function NewAdmin() {
             </div>
             <span className="flex gap-3">
               <button
+                disabled={Loading}
                 className="text-lg font-semibold bg-slate-700 text-slate-100 w-[200px] max-sm:w-full mt-4 p-1 rounded hover:scale-98"
                 type="submit"
               >

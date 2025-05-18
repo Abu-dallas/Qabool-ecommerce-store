@@ -126,7 +126,7 @@ function page({ params }) {
               Add to cart
             </button>
             <button className="text-lg text-semibold w-full rounded-xl border border-slate-300 p-1 px-1 hover:bg-slate-800 hover:text-slate-50">
-              Check out
+              Check Out
             </button>
           </div>
         </div>

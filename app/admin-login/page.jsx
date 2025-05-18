@@ -4,9 +4,12 @@ import { useRouter } from "next/navigation";
 import { validateLogin } from "@/Components/constants/formikValidate";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
+import ButtonLoader from "@/Components/constants/ButtonLoader";
+import { useState } from "react";
 
 function AdminLogin() {
   const router = useRouter();
+  const [Loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -18,6 +21,7 @@ function AdminLogin() {
   });
 
   async function onSubmit(values) {
+    setLoading(true);
     const Login = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -25,8 +29,13 @@ function AdminLogin() {
       callbackUrl: "/",
     });
     if (Login.ok) {
-      toast.success("Admin successfully logged");
+      setLoading(false);
+      toast.success("Admin Login");
       router.push("/admin");
+    }
+    if (!Login.ok) {
+      setLoading(false);
+      toast.error("Incorrect email or password");
     }
   }
 
@@ -80,10 +89,11 @@ function AdminLogin() {
 
           <span className="flex mt-4">
             <button
-              className="text-lg font-semibold bg-slate-700 text-slate-100 w-full mt-4 p-1 rounded hover:scale-98"
+              disabled={Loading}
+              className="text-lg flex items-center justify-center font-semibold bg-slate-700 text-slate-100 w-full mt-4 p-1 py-2 rounded hover:scale-98"
               type="submit"
             >
-              Login
+              {Loading ? <ButtonLoader /> : "Login"}
             </button>
           </span>
         </form>

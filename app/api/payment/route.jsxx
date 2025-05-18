@@ -1,0 +1,52 @@
+import { ConnectToDb } from "@/database/connectToDb";
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import Customers from "@/models/CustomersSchema";
+
+export const POST = async (req, res) => {
+  const { title, image, price, quatity } = await res.json();
+  const sessionUser = getServerSession(authOptions);
+
+  try {
+    await ConnectToDb();
+    const user = await Customers.findOne({ email: sessionUser?.email });
+    const paystack_secret = process.env.paystack_secret;
+    const response = await fetch(
+      "https://api.paystack.co/transaction/initialize",
+      {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${paystack_secret}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+          amount: price * 100,
+          metadata: {
+            name: user.name,
+            phone: user.phone,
+            user_image: user.image,
+            title,
+            image,
+            price,
+            quatity,
+          },
+        }),
+      }
+    );
+
+    const { authorization_url, reference } = await response?.data.data;
+
+    return new NextResponse(
+      JSON.stringify({
+        message: "payment is successful",
+        authorization_url: authorization_url,
+        reference: reference,
+      })
+    );
+  } catch (error) {
+    console.log("[payment route error]", error);
+    return new NextResponse("internal server error", { status: 500 });
+  }
+};

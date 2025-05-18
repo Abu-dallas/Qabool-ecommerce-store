@@ -8,7 +8,7 @@ import Link from "next/link";
 import { TextField, MenuItem } from "@mui/material";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
-import { Upload, X } from "lucide-react";
+import { Plus, Upload, X } from "lucide-react";
 import toast from "react-hot-toast";
 
 function NewProduct() {
@@ -17,6 +17,8 @@ function NewProduct() {
   const [Media, setMedia] = useState([]);
   const [Colors, setColors] = useState([]);
   const [Size, setSize] = useState([]);
+  const [InputValue, setInputValue] = useState("");
+  const [InputValue2, setInputValue2] = useState("");
 
   const router = useRouter();
 
@@ -70,11 +72,22 @@ function NewProduct() {
     }
   };
   const handleSize = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       setSize([...Size, e.target.value]);
       e.target.value = "";
     }
+  };
+  const handleSizeClick = (e) => {
+    e.preventDefault();
+    setSize([...Size, InputValue]);
+    setInputValue("");
+  };
+
+  const handleColorClick = (e) => {
+    e.preventDefault();
+    setColors([...Colors, InputValue2]);
+    setInputValue2("");
   };
 
   const handleKeyDown = (e) => {
@@ -117,14 +130,22 @@ function NewProduct() {
             <label className="text-slate-700 text-lg" htmlFor="Size">
               Size
             </label>
-            <input
-              type="text"
-              placeholder="Size"
-              className="w-full p-2 outline-none border-1 border-slate-300 rounded text-slate-700"
-              onKeyUp={handleSize}
-            />
+            <div className="w-full flex items-center outline-none border-1 border-slate-300 rounded">
+              <input
+                type="text"
+                placeholder="Size"
+                className="text-slate-700 p-2 outline-none w-full"
+                onKeyUp={handleSize}
+                value={InputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <button type="button" onClick={handleSizeClick}>
+                <Plus className="text-slate-700 mx-2" />
+              </button>
+            </div>
+
             <div className="flex gap-2 m-2">
-              {Size.map((size, index) => (
+              {Size?.map((size, index) => (
                 <span
                   key={index}
                   className="bg-blue-200 py-1 px-2 text-center text-blue-500 rounded-lg"
@@ -139,12 +160,20 @@ function NewProduct() {
               <label className="text-slate-700 text-lg" htmlFor="Color">
                 Color
               </label>
-              <input
-                type="text"
-                placeholder="Color"
-                className="w-full p-2 outline-none border-1 border-slate-300 rounded text-slate-700"
-                onKeyUp={handleColor}
-              />
+              <div className="w-full flex items-center outline-none border-1 border-slate-300 rounded">
+                <input
+                  type="text"
+                  placeholder="Color"
+                  className="text-slate-700 p-2 outline-none w-full"
+                  onKeyUp={handleColor}
+                  value={InputValue2}
+                  onChange={(e) => setInputValue2(e.target.value)}
+                />
+                <button type="button" onClick={handleColorClick}>
+                  <Plus className="text-slate-700 mx-2" />
+                </button>
+              </div>
+
               <div className="flex gap-2 m-2">
                 {Colors.map((color, index) => (
                   <span

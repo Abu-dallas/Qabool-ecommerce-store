@@ -14,10 +14,14 @@ const handler = NextAuth({
         try {
           await ConnectToDb();
           const findAdmin = await AdminRegister.findOne({ email });
+
           if (!findAdmin) {
             return null;
           }
-          const checkPassword = bcrypt.compare(password, findAdmin.password);
+          const checkPassword = await bcrypt.compare(
+            password,
+            findAdmin.password
+          );
           if (!checkPassword) {
             return null;
           }
@@ -53,5 +57,5 @@ const handler = NextAuth({
     },
   },
 });
-
+//const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
