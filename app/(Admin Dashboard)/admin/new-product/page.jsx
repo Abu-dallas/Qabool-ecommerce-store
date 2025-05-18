@@ -228,10 +228,14 @@ function NewProduct() {
             label="Choice Category"
             size="small"
           >
-            <MenuItem value="bags">Bags</MenuItem>
-            <MenuItem value="rings">Rings</MenuItem>
-            <MenuItem value="shoes">Shoes</MenuItem>
-            <MenuItem value="beeds">Beeds</MenuItem>
+            <MenuItem value="Bags">Bags</MenuItem>
+            <MenuItem value="Rings">Rings</MenuItem>
+            <MenuItem value="Purses">Purses</MenuItem>
+            <MenuItem value="Wallets">Wallets</MenuItem>
+            <MenuItem value="Necklace">Necklace</MenuItem>
+            <MenuItem value="Earrings">Earrings</MenuItem>
+            <MenuItem value="Bracelets">Bracelets</MenuItem>
+            <MenuItem value="Anklets">Anklets</MenuItem>
           </TextField>
           <div>
             <label className="text-slate-700 text-lg" htmlFor="description">

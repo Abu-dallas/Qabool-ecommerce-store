@@ -11,8 +11,10 @@ function Products({ Featured, Data }) {
   const [Search, setSearch] = useState("");
 
   const FilterProducts = Data.filter((p) =>
-    Search.length > 2
-      ? p.title.toLowerCase().includes(Search.toLowerCase())
+    Search.length > 1
+      ? p.title.toLowerCase().includes(Search.toLowerCase()) ||
+        p.price.toString().includes(Search.toString()) ||
+        p.category.some((c) => c.toLowerCase().includes(Search.toLowerCase()))
       : true
   );
 
